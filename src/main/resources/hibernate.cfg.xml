@@ -1,0 +1,12 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:postgresql://localhost/tnhibernate</property> <!-- BD Name -->
+        <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+        <property name="connection.username">postgres</property> <!-- DB User -->
+        <property name="connection.password">secure_password</property> <!-- DB Password -->
+    </session-factory>
+</hibernate-configuration>

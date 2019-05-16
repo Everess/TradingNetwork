@@ -1,11 +1,15 @@
 package tnSpringHibernate.services;
 
+import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.ProducerDaoImpl;
 import tnSpringHibernate.models.Producer;
+
+import javax.transaction.Transactional;
 
 /**
  * Implementation methods of dao for producer
  */
+@Service
 public class ProducerService {
 
     private ProducerDaoImpl producerDao = new ProducerDaoImpl();
@@ -30,15 +34,18 @@ public class ProducerService {
         return producerDao.findByIdSettlement(idSettlement);
     }
 
-    public void save(Producer producer) {
+    @Transactional
+    public void saveProducer(Producer producer) {
         producerDao.save(producer);
     }
 
-    public void update(Producer producer) {
+    @Transactional
+    public void updateProducer(Producer producer) {
         producerDao.update(producer);
     }
 
-    public void delete(Producer producer) {
+    @Transactional
+    public void deleteProducer(Producer producer) {
         producerDao.delete(producer);
     }
 }

@@ -6,20 +6,17 @@ plugins {
 
 apply plugin: 'war'
 
-project.webAppDirName = 'webapp'
+//project.webAppDirName = 'webapp'
 
 group 'tnSpringHibernate'
 version '1.0-SNAPSHOT'
 
-
 sourceCompatibility = 1.8
 mainClassName = 'tnSpringHibernate.Run'
-
 
 war {
     enabled=true
 }
-
 
 repositories {
     mavenCentral()
@@ -48,20 +45,12 @@ dependencies {
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
     compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.2.Final'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-
-// https://mvnrepository.com/artifact/javax.servlet/jstl
+    /* Servlet & Tomcat */
+    //https://mvnrepository.com/artifact/javax.servlet/jstl
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
-    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '9.0.19'
     // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
     compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.19'
 
-
-
-
-
-
-
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 
 }

@@ -1,10 +1,13 @@
 package tnSpringHibernate.models;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 /**
  * An entity describing all possible types of goods
  */
+@Component
 @Entity
 @Table(name = "goods_types")
 public class GoodsType {

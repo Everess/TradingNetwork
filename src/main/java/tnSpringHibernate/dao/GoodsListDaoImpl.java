@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.GoodsList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +9,7 @@ import tnSpringHibernate.utils.HibernateSessionFactoryUtil;
 /**
  * GoodsListDao Interface implementation with Hibernate
  */
+@Repository
 public class GoodsListDaoImpl implements GoodsListDao {
     @Override
     public GoodsList findById(int idGood) {

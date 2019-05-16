@@ -1,6 +1,8 @@
 package tnSpringHibernate.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An entity describing a specific worker in shop.
@@ -14,8 +16,10 @@ public class Worker {
     @Column(name = "id_worker")
     private int idWorker;
 
-    @Column(name = "id_shop")
-    private int idShop;
+    //@Column(name = "id_shop")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_shop")
+    private Shop idShop;
 
     @Column(name = "firstname", length = 50)
     private String firstname;
@@ -33,7 +37,7 @@ public class Worker {
 
     }
 
-    public Worker(int idShop, String firstname, String surname, String secondname) {
+    public Worker(Shop idShop, String firstname, String surname, String secondname) {
         this.idShop = idShop;
         this.firstname = firstname;
         this.surname = surname;
@@ -52,7 +56,7 @@ public class Worker {
      * Get id of shop
      * @return idShop
      */
-    public int getIdShop() {
+    public Shop getIdShop() {
         return idShop;
     }
 
@@ -60,7 +64,7 @@ public class Worker {
      * Set id of shop
      * @param idShop New id shop
      */
-    public void setIdShop(int idShop) {
+    public void setIdShop(Shop idShop) {
         this.idShop = idShop;
     }
 

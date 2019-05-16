@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Good;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +9,7 @@ import tnSpringHibernate.utils.HibernateSessionFactoryUtil;
 /**
  * GoodDao Interface implementation with Hibernate
  */
+@Repository
 public class GoodDaoImpl implements GoodDao {
     @Override
     public Good findById(int idGood) {

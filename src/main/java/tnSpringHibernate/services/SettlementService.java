@@ -1,13 +1,16 @@
 package tnSpringHibernate.services;
 
+import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.SettlementDaoImpl;
 import tnSpringHibernate.models.Settlement;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Implementation methods of dao for settlement
  */
+@Service
 public class SettlementService {
 
     private SettlementDaoImpl settlementDao = new SettlementDaoImpl();
@@ -32,15 +35,18 @@ public class SettlementService {
         return settlementDao.findAll();
     }
 
-    public void save(Settlement settlement) {
+    @Transactional
+    public void saveSettl(Settlement settlement) {
         settlementDao.save(settlement);
     }
 
-    public void update(Settlement settlement) {
+    @Transactional
+    public void updateSettl(Settlement settlement) {
         settlementDao.update(settlement);
     }
 
-    public void delete(Settlement settlement) {
+    @Transactional
+    public void deleteSettl(Settlement settlement) {
         settlementDao.delete(settlement);
     }
 }

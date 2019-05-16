@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * The entity that describes the delivery.
  */
-//@Component
+@Component
 @Entity
 @Table(name = "deliveries")
 public class Delivery {

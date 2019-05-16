@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Settlement;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * SettlementDao Interface implementation with Hibernate
  */
+@Repository
 public class SettlementDaoImpl implements SettlementDao {
 
     @Override

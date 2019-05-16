@@ -1,11 +1,15 @@
 package tnSpringHibernate.services;
 
+import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.GoodsTypeDaoImpl;
 import tnSpringHibernate.models.GoodsType;
+
+import javax.transaction.Transactional;
 
 /**
  * Implementation methods of dao for good types
  */
+@Service
 public class GoodsTypeService {
 
     private GoodsTypeDaoImpl goodsTypeDao = new GoodsTypeDaoImpl();
@@ -22,15 +26,18 @@ public class GoodsTypeService {
         return goodsTypeDao.findByGoodType(goodType);
     }
 
-    public void save(GoodsType goodsType) {
+    @Transactional
+    public void saveGoodsType(GoodsType goodsType) {
         goodsTypeDao.save(goodsType);
     }
 
-    public void update(GoodsType goodsType) {
+    @Transactional
+    public void updateGoodsType(GoodsType goodsType) {
         goodsTypeDao.update(goodsType);
     }
 
-    public void delete(GoodsType goodsType) {
+    @Transactional
+    public void deleteGoodsType(GoodsType goodsType) {
         goodsTypeDao.delete(goodsType);
     }
 }

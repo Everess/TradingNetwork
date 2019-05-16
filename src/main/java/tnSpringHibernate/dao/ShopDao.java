@@ -30,7 +30,7 @@ public interface ShopDao {
      * Find all shops in shops
      * @return
      */
-    List<Shop> findAll();
+    List<Shop> findAllShops();
 
     /**
      * Save shop in db

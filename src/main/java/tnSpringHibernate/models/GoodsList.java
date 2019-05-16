@@ -1,10 +1,13 @@
 package tnSpringHibernate.models;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 /**
  * An entity describing all possible products
  */
+@Component
 @Entity
 @Table(name = "goods_list")
 public class GoodsList {

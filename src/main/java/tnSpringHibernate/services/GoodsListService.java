@@ -1,11 +1,15 @@
 package tnSpringHibernate.services;
 
+import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.GoodsListDaoImpl;
 import tnSpringHibernate.models.GoodsList;
+
+import javax.transaction.Transactional;
 
 /**
  * Implementation methods of dao for good list
  */
+@Service
 public class GoodsListService {
 
     private GoodsListDaoImpl goodsListDao = new GoodsListDaoImpl();
@@ -26,15 +30,18 @@ public class GoodsListService {
         return goodsListDao.findByNameOfGood(nameOfGood);
     }
 
-    public void save(GoodsList goodsList) {
+    @Transactional
+    public void saveGoodsList(GoodsList goodsList) {
         goodsListDao.save(goodsList);
     }
 
-    public void update(GoodsList goodsList) {
+    @Transactional
+    public void updateGoodsList(GoodsList goodsList) {
         goodsListDao.update(goodsList);
     }
 
-    public void delete(GoodsList goodsList) {
+    @Transactional
+    public void deleteGoodsList(GoodsList goodsList) {
         goodsListDao.delete(goodsList);
     }
 }

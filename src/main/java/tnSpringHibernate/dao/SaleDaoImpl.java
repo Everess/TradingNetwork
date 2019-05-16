@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Sale;
 import tnSpringHibernate.models.SaleMethod;
 import org.hibernate.Session;
@@ -11,6 +12,7 @@ import java.util.Date;
 /**
  * SaleDao Interface implementation with Hibernate
  */
+@Repository
 public class SaleDaoImpl implements SaleDao {
     @Override
     public Sale findById(int idSale) {

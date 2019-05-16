@@ -1,11 +1,17 @@
 package tnSpringHibernate.models;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * An entity describing a specific store.
  */
+@Component
 @Entity
 @Table(name = "shops", schema = "public")
 public class Shop implements Serializable {
@@ -23,6 +29,9 @@ public class Shop implements Serializable {
     @Column(name = "id_settlement")
     private int idSettlement;
 
+    @OneToMany(mappedBy = "idShop", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Worker> workerList;
+
     /**
      * Default constructor
      */
@@ -34,6 +43,11 @@ public class Shop implements Serializable {
         this.nameOfShop = nameOfShop;
         this.idSettlement = idSettlement;
     }
+
+    public Collection<Worker> getWorkerList() {
+        return workerList;
+    }
+
 
     /**
      * Get shop id

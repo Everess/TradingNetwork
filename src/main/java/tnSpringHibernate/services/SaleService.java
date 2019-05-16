@@ -1,14 +1,17 @@
 package tnSpringHibernate.services;
 
+import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.SaleDaoImpl;
 import tnSpringHibernate.models.Sale;
 import tnSpringHibernate.models.SaleMethod;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 
 /**
  * Implementation methods of dao for sale
  */
+@Service
 public class SaleService {
 
     private SaleDaoImpl saleDao = new SaleDaoImpl();
@@ -41,15 +44,18 @@ public class SaleService {
         return saleDao.findByPrice(price);
     }
 
-    public void save(Sale sale) {
+    @Transactional
+    public void saveSale(Sale sale) {
         saleDao.save(sale);
     }
 
-    public void update(Sale sale) {
+    @Transactional
+    public void updateSale(Sale sale) {
         saleDao.update(sale);
     }
 
-    public void delete(Sale sale) {
+    @Transactional
+    public void deleteSale(Sale sale) {
         saleDao.delete(sale);
     }
 }

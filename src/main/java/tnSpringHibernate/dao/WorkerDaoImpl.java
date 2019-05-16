@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Worker;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * WorkerDao Interface implementation with Hibernate
  */
+@Repository
 public class WorkerDaoImpl implements WorkerDao {
 
     @Override
@@ -39,7 +41,7 @@ public class WorkerDaoImpl implements WorkerDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Worker> findAll() {
+    public List<Worker> findAllWorkers() {
         List<Worker> workers = HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("from Worker").list();
         return workers;
     }

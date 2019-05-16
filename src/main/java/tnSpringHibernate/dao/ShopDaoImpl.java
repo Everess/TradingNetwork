@@ -1,5 +1,7 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Shop;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,6 +12,7 @@ import java.util.List;
 /**
  * ShopDao Interface implementation with Hibernate
  */
+@Repository
 public class ShopDaoImpl implements ShopDao {
 
     @Override
@@ -29,7 +32,7 @@ public class ShopDaoImpl implements ShopDao {
 
     @Override
     @SuppressWarnings("unchecked") // TODO: Rewrite?
-    public List<Shop> findAll() {
+    public List<Shop> findAllShops() {
         List<Shop> shops = HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("from Shop").list();
         return shops;
     }

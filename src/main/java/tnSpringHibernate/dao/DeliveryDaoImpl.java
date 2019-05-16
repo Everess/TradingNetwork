@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Delivery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,6 +11,7 @@ import java.util.Date;
 /**
  * DeliveryDao Interface implementation with Hibernate
  */
+@Repository
 public class DeliveryDaoImpl implements DeliveryDao {
     @Override
     public Delivery findById(int idDelivery) {

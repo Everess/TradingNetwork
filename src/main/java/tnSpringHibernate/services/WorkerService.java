@@ -1,13 +1,16 @@
 package tnSpringHibernate.services;
 
+import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.WorkerDaoImpl;
 import tnSpringHibernate.models.Worker;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Implementation methods of dao for worker
  */
+@Service
 public class WorkerService {
 
     private WorkerDaoImpl workerDao = new WorkerDaoImpl();
@@ -32,19 +35,22 @@ public class WorkerService {
         return workerDao.findBySecondname(secondname);
     }
 
-    public List<Worker> findAll() {
-        return workerDao.findAll();
+    public List<Worker> findAllWorkers() {
+        return workerDao.findAllWorkers();
     }
 
-    public void save(Worker worker) {
+    @Transactional
+    public void saveWorker(Worker worker) {
         workerDao.save(worker);
     }
 
-    public void update(Worker worker) {
+    @Transactional
+    public void updateWorker(Worker worker) {
         workerDao.update(worker);
     }
 
-    public void delete(Worker worker) {
+    @Transactional
+    public void deleteWorker(Worker worker) {
         workerDao.delete(worker);
     }
 

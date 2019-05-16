@@ -44,7 +44,7 @@ public interface WorkerDao {
      * Find all workers in workers
      * @return
      */
-    List<Worker> findAll();
+    List<Worker> findAllWorkers();
 
     /**
      * Save worker in db

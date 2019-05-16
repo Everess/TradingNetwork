@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.DeliveryDaoImpl;
 import tnSpringHibernate.models.Delivery;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 
 /**
@@ -42,15 +43,16 @@ public class DeliveryService {
         return deliveryDao.findByIdProducer(idProducer);
     }
 
-    public void save(Delivery delivery) {
-        deliveryDao.save(delivery);
-    }
+    @Transactional
+    public void saveDelivery(Delivery delivery) { deliveryDao.save(delivery); }
 
-    public void update(Delivery delivery) {
+    @Transactional
+    public void updateDelivery(Delivery delivery) {
         deliveryDao.update(delivery);
     }
 
-    public void delete(Delivery delivery) {
+    @Transactional
+    public void deleteDelivery(Delivery delivery) {
         deliveryDao.delete(delivery);
     }
 }

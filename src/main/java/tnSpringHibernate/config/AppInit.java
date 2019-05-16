@@ -1,6 +1,7 @@
 package tnSpringHibernate.config;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -16,6 +17,7 @@ import javax.servlet.ServletRegistration;
  *
  */
 @ComponentScan(basePackages = { "tnSpringHibernate.controllers" })
+@Configuration
 public class AppInit implements WebApplicationInitializer {
 
     @Override
@@ -36,9 +38,9 @@ public class AppInit implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher =
                 servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+        //dispatcher.addMapping("/");
         // Отдельный маппинг для главной страницы приложения
-        dispatcher.addMapping("/page");
+        //dispatcher.addMapping("/page");
 
         // Установка параметров контейнера
         servletContext.setInitParameter("defaultHtmlEscape", "true");

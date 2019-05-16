@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.GoodDaoImpl;
 import tnSpringHibernate.models.Good;
 
+import javax.transaction.Transactional;
+
 /**
  * Implementation methods of dao for Good
  */
@@ -32,15 +34,18 @@ public class GoodService {
         return goodDao.findByDiscount(idDelivery);
     }
 
-    public void save(Good good) {
+    @Transactional
+    public void saveGood(Good good) {
         goodDao.save(good);
     }
 
-    public void update(Good good) {
+    @Transactional
+    public void updateGood(Good good) {
         goodDao.update(good);
     }
 
-    public void delete(Good good) {
+    @Transactional
+    public void deleteGood(Good good) {
         goodDao.delete(good);
     }
 }

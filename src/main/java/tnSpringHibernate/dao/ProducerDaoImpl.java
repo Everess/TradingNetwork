@@ -1,5 +1,6 @@
 package tnSpringHibernate.dao;
 
+import org.springframework.stereotype.Repository;
 import tnSpringHibernate.models.Producer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +9,7 @@ import tnSpringHibernate.utils.HibernateSessionFactoryUtil;
 /**
  * ProducerDao Interface implementation with Hibernate
  */
+@Repository
 public class ProducerDaoImpl implements ProducerDao {
     @Override
     public Producer findById(int idProducer) {
