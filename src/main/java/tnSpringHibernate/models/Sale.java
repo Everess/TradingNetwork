@@ -15,11 +15,19 @@ public class Sale {
     @Column(name = "id_sale")
     private int idSale;
 
-    @Column(name = "id_worker")
-    private int idWorker;
+    /**
+     * Foreign key of Worker
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_worker")
+    private Worker idWorker;
 
-    @Column(name = "id_good")
-    private int idGood;
+    /**
+     * Foreign key of Good
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_good")
+    private Good idGood;
 
     //Import date, sql or util?
     @Column(name = "sale_date")
@@ -44,7 +52,7 @@ public class Sale {
 
     }
 
-    public Sale(int idWorker, int idGood, Date saleDate, SaleMethod saleMethod, int price) {
+    public Sale(Worker idWorker, Good idGood, Date saleDate, SaleMethod saleMethod, int price) {
         this.idWorker = idWorker;
         this.idGood = idGood;
         this.saleDate = saleDate;
@@ -64,7 +72,7 @@ public class Sale {
      * Get worker id
      * @return idWorker
      */
-    public int getIdWorker() {
+    public Worker getIdWorker() {
         return idWorker;
     }
 
@@ -72,7 +80,7 @@ public class Sale {
      * Set id worker
      * @param idWorker New id of worker
      */
-    public void setIdWorker(int idWorker) {
+    public void setIdWorker(Worker idWorker) {
         this.idWorker = idWorker;
     }
 
@@ -80,7 +88,7 @@ public class Sale {
      * Get id of good
      * @return idGood
      */
-    public int getIdGood() {
+    public Good getIdGood() {
         return idGood;
     }
 
@@ -88,7 +96,7 @@ public class Sale {
      * Set id of good
      * @param idGood New id of good
      */
-    public void setIdGood(int idGood) {
+    public void setIdGood(Good idGood) {
         this.idGood = idGood;
     }
 

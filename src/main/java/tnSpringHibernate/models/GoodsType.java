@@ -3,6 +3,7 @@ package tnSpringHibernate.models;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * An entity describing all possible types of goods
@@ -19,6 +20,12 @@ public class GoodsType {
 
     @Column(name = "good_type")
     private GoodType goodType;
+
+    /**
+     * Primary key of Goods List
+     */
+    @OneToMany(mappedBy = "idGoodType", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<GoodsList> goodsList;
 
     /**
      * Default constructor

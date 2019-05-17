@@ -10,10 +10,6 @@ import tnSpringHibernate.services.ShopService;
 import java.util.List;
 
 /**
- * TODO: graphql java
- */
-
-/**
  * Implement the ability to accept http requests and return json
  */
 @RestController

@@ -1,9 +1,12 @@
 package tnSpringHibernate.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import tnSpringHibernate.models.Settlement;
 import tnSpringHibernate.models.Shop;
 import tnSpringHibernate.services.ShopService;
 
@@ -38,7 +41,7 @@ public class FormController {
      */
     @PostMapping(value = "/add")
     public String addShop(@RequestParam String nameOfShop,
-                          @RequestParam Integer idSettlement) {
+                          @RequestParam Settlement idSettlement) {
         Shop sh = new Shop(nameOfShop, idSettlement);
         shopService.saveShop(sh);
 

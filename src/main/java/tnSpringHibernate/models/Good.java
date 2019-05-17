@@ -3,6 +3,8 @@ package tnSpringHibernate.models;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * An entity describing a product in a particular store
@@ -10,12 +12,16 @@ import javax.persistence.*;
 @Component
 @Entity
 @Table(name = "goods")
-public class Good {
+public class Good implements Serializable {
 
+    /**
+     * Foreign key of Goods List
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_good")
-    private int idGood;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_good")
+    private GoodsList idGood;
 
     /**
      * The number of specific goods in the store
@@ -31,16 +37,25 @@ public class Good {
 
     /**
      * Id of concrete delivery
+     * Foreign key of Delivery
      */
-    @Column(name = "id_delivery")
-    private int idDelivery;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_delivery")
+    private Delivery idDelivery;
+
+    /**
+     * Primary key of Sale
+     */
+    @OneToMany(mappedBy = "idGood", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Sale> goodSaleList;
 
     /**
      * Default constructor
      */
     public Good() {}
 
-    public Good(int value, int discount, int idDelivery) {
+    public Good(GoodsList idGood, int value, int discount, Delivery idDelivery) {
+        this.idGood = idGood;
         this.value = value;
         this.discount = discount;
         this.idDelivery = idDelivery;
@@ -50,7 +65,7 @@ public class Good {
      * Get id good
      * @return idGood
      */
-    public int getIdGood() {
+    public GoodsList getIdGood() {
         return idGood;
     }
 
@@ -90,7 +105,7 @@ public class Good {
      * Get id of delivery
      * @return idDelivery
      */
-    public int getIdDelivery() {
+    public Delivery getIdDelivery() {
         return idDelivery;
     }
 
@@ -98,7 +113,7 @@ public class Good {
      * Set id of delivery
      * @param idDelivery New id of delivery concrete good
      */
-    public void setIdDelivery(int idDelivery) {
+    public void setIdDelivery(Delivery idDelivery) {
         this.idDelivery = idDelivery;
     }
 }

@@ -1,12 +1,10 @@
 package tnSpringHibernate.models;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * An entity describing a specific store.
@@ -26,11 +24,24 @@ public class Shop implements Serializable {
     @Column(name = "name_of_shop")
     private String nameOfShop;
 
-    @Column(name = "id_settlement")
-    private int idSettlement;
+    /**
+     * Foreign key for Settlement
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_settlement")
+    private Settlement idSettlement;
 
+    /**
+     * Primary key for Worker
+     */
     @OneToMany(mappedBy = "idShop", cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Worker> workerList;
+
+    /**
+     * Primary key for Delivery
+     */
+    @OneToMany(mappedBy = "idShop", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Delivery> deliveryList;
 
     /**
      * Default constructor
@@ -39,14 +50,14 @@ public class Shop implements Serializable {
 
     }
 
-    public Shop(String nameOfShop, int idSettlement) {
+    public Shop(String nameOfShop, Settlement idSettlement) {
         this.nameOfShop = nameOfShop;
         this.idSettlement = idSettlement;
     }
 
-    public Collection<Worker> getWorkerList() {
+    /*public Collection<Worker> getWorkerList() {
         return workerList;
-    }
+    }*/
 
 
     /**
@@ -77,7 +88,7 @@ public class Shop implements Serializable {
      * Get id settlement
      * @return idSettlement
      */
-    public int getIdSettlement() {
+    public Settlement getIdSettlement() {
         return idSettlement;
     }
 
@@ -85,7 +96,7 @@ public class Shop implements Serializable {
      * Set idSettlement
      * @param idSettlement New id settlement
      */
-    public void setIdSettlement(int idSettlement) {
+    public void setIdSettlement(Settlement idSettlement) {
         this.idSettlement = idSettlement;
     }
 

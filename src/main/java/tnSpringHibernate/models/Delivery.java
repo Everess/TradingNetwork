@@ -1,9 +1,9 @@
 package tnSpringHibernate.models;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -19,8 +19,12 @@ public class Delivery {
     @Column(name = "id_delivery")
     private int idDelivery;
 
-    @Column(name = "id_shop")
-    private int idShop;
+    /**
+     * Foreign key of Shop
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_shop")
+    private Shop idShop;
 
     @Column(name = "delivery_description")
     private String deliveryDescription;
@@ -38,8 +42,18 @@ public class Delivery {
     @Column(name = "date_of_delivery")
     private Date dateOfDelivery;
 
-    @Column(name = "id_producer")
-    private int idProducer;
+    /**
+     * Foreign key of Producer
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_producer")
+    private Producer idProducer;
+
+    /**
+     * Primary key of Good
+     */
+    @OneToMany(mappedBy = "idDelivery", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Good> goodList;
 
     /**
      * Default constructor.
@@ -48,13 +62,17 @@ public class Delivery {
 
     }
 
-    public Delivery(int idShop, String deliveryDescription, int value, Date dateOfDelivery, int idProducer) {
+    public Delivery(Shop idShop, String deliveryDescription, int value, Date dateOfDelivery, Producer idProducer) {
         this.idShop = idShop;
         this.deliveryDescription = deliveryDescription;
         this.value = value;
         this.dateOfDelivery = dateOfDelivery;
         this.idProducer = idProducer;
     }
+
+    /*public Collection<Good> getGoodList() {
+        return goodList;
+    }*/
 
     /**
      * Get id of delivery
@@ -68,7 +86,7 @@ public class Delivery {
      * Get id of shop
      * @return idShop
      */
-    public int getIdShop() {
+    public Shop getIdShop() {
         return idShop;
     }
 
@@ -76,7 +94,7 @@ public class Delivery {
      * Set id of shop
      * @param idShop new id shop
      */
-    public void setIdShop(int idShop) {
+    public void setIdShop(Shop idShop) {
         this.idShop = idShop;
     }
 
@@ -132,7 +150,7 @@ public class Delivery {
      * Get id producer
      * @return idProducer
      */
-    public int getIdProducer() {
+    public Producer getIdProducer() {
         return idProducer;
     }
 
@@ -140,7 +158,7 @@ public class Delivery {
      * Set id producer
      * @param idProducer new id producer
      */
-    public void setIdProducer(int idProducer) {
+    public void setIdProducer(Producer idProducer) {
         this.idProducer = idProducer;
     }
 }

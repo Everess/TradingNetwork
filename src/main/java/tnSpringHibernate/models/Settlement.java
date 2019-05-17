@@ -1,6 +1,7 @@
 package tnSpringHibernate.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * An entity describing a settlement of shop or producer.
@@ -21,6 +22,18 @@ public class Settlement {
     private String city;
 
     /**
+     * Primary key for Shop
+     */
+    @OneToMany(mappedBy = "idSettlement", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Shop> shopList;
+
+    /**
+     * Primary key for Producer
+     */
+    @OneToMany(mappedBy = "idSettlement", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Producer> producerList;
+
+    /**
      * Default constructor
      */
     public Settlement() {
@@ -31,6 +44,10 @@ public class Settlement {
         this.region = region;
         this.city = city;
     }
+
+   /* public Collection<Shop> getShopList() {
+        return shopList;
+    }*/
 
     /**
      * Get id of settlement

@@ -3,6 +3,7 @@ package tnSpringHibernate.models;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * An entity describing all possible products
@@ -19,13 +20,21 @@ public class GoodsList {
 
     /**
      * Id type of good
+     * Foreign key of Goods Type
      */
-    @Column(name = "id_good_type")
-    private int idGoodType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_good_type")
+    private GoodsType idGoodType;
 
     //Реализация при помощи списка или енум?
     @Column(name = "name_of_good")
     private NameOfGood nameOfGood;
+
+    /**
+     * Primary key of Good
+     */
+    @OneToMany(mappedBy = "idGood", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Good> goodList;
 
     /**
      * Default constructor
@@ -34,7 +43,7 @@ public class GoodsList {
 
     }
 
-    public GoodsList(int idGoodType, NameOfGood nameOfGood) {
+    public GoodsList(GoodsType idGoodType, NameOfGood nameOfGood) {
         this.idGoodType = idGoodType;
         this.nameOfGood = nameOfGood;
     }
@@ -51,7 +60,7 @@ public class GoodsList {
      * Get id type of good in all list
      * @return idGoodType
      */
-    public int getIdGoodType() {
+    public GoodsType getIdGoodType() {
         return idGoodType;
     }
 
@@ -59,7 +68,7 @@ public class GoodsList {
      * Set id type of good
      * @param idGoodType New good type value
      */
-    public void setIdGoodType(int idGoodType) {
+    public void setIdGoodType(GoodsType idGoodType) {
         this.idGoodType = idGoodType;
     }
 

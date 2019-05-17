@@ -1,6 +1,7 @@
 package tnSpringHibernate.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * An entity describing the producers of goods
@@ -23,15 +24,25 @@ public class Producer {
     /**
      * The id of the supplier’s company (region, city)
      */
-    @Column(name = "id_settlement")
-    private int idSettlement;
+    /**
+     * Foreign key of Settlement
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_settlement")
+    private Settlement idSettlement;
+
+    /**
+     * Primary key of Producer
+     */
+    @OneToMany(mappedBy = "idProducer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Delivery> deliveryList;
 
     /**
      * Default constructor
      */
     public Producer() {}
 
-    public Producer(String companyName, int phoneNumber, int idSettlement) {
+    public Producer(String companyName, int phoneNumber, Settlement idSettlement) {
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.idSettlement = idSettlement;
@@ -81,7 +92,7 @@ public class Producer {
      * Get id settlement(region, city)
      * @return
      */
-    public int getIdSettlement() {
+    public Settlement getIdSettlement() {
         return idSettlement;
     }
 
@@ -89,7 +100,7 @@ public class Producer {
      * Set id settlement
      * @param idSettlement New id settlement
      */
-    public void setIdSettlement(int idSettlement) {
+    public void setIdSettlement(Settlement idSettlement) {
         this.idSettlement = idSettlement;
     }
 }

@@ -1,8 +1,7 @@
 package tnSpringHibernate.models;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * An entity describing a specific worker in shop.
@@ -16,7 +15,9 @@ public class Worker {
     @Column(name = "id_worker")
     private int idWorker;
 
-    //@Column(name = "id_shop")
+    /**
+     * Foreign key for Shop
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_shop")
     private Shop idShop;
@@ -29,6 +30,12 @@ public class Worker {
 
     @Column(name = "secondname", length = 50)
     private String secondname;
+
+    /**
+     * Primary key for Worker
+     */
+    @OneToMany(mappedBy = "idWorker", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Worker> workerSaleList;
 
     /**
      * Default constructor
