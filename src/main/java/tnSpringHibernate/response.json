@@ -1,0 +1,6 @@
+{
+  "message" : "Shops not found",
+  "httpStatus" : "NOT_FOUND",
+  "statusCode" : 200,
+  "exception" : "tnSpringHibernate.exceptions.EntityNotFoundException"
+}

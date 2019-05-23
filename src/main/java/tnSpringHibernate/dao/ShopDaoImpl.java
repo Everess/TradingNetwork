@@ -1,10 +1,9 @@
 package tnSpringHibernate.dao;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
-import tnSpringHibernate.models.Shop;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import tnSpringHibernate.models.Shop;
 import tnSpringHibernate.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
@@ -63,4 +62,5 @@ public class ShopDaoImpl implements ShopDao {
         tx1.commit();
         session.close();
     }
+
 }

@@ -1,6 +1,5 @@
 package tnSpringHibernate.services;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.ShopDaoImpl;
 import tnSpringHibernate.models.Shop;

@@ -49,4 +49,5 @@ public interface ShopDao {
      * @param shop
      */
     void delete(Shop shop);
+
 }

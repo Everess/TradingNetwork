@@ -1,5 +1,9 @@
 package tnSpringHibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -8,17 +12,25 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "settlements")
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS,
+       include = JsonTypeInfo.As.PROPERTY,
+       property = "@class")
+@JsonPropertyOrder({"idSettlement", "city", "region"}) // For choose order for the properties
 public class Settlement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_settlement")
+    @JsonProperty(value = "ID of settlement")
     private int idSettlement;
 
     @Column(name = "region", length = 50)
+    @JsonProperty(value = "Region")
     private String region;
 
     @Column(name = "city", length = 50)
+    @JsonProperty(value = "City")
     private String city;
 
     /**

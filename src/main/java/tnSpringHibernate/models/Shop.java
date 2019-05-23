@@ -1,5 +1,9 @@
 package tnSpringHibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -12,6 +16,11 @@ import java.util.Collection;
 @Component
 @Entity
 @Table(name = "shops", schema = "public")
+
+//@JsonAutoDetect // Marks a class as ready for serialization in JSON.
+/*@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class") */ // Information about type of this class. For serializing in shops.json
 public class Shop implements Serializable {
 
     //private static final long serialVersionUID = 1L;
@@ -19,9 +28,12 @@ public class Shop implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_shop")
+    //@JsonProperty(value = "ID of shop")
+    @JsonIgnore
     private int idShop;
 
     @Column(name = "name_of_shop")
+    @JsonProperty(value = "Name of shop")
     private String nameOfShop;
 
     /**
@@ -29,6 +41,8 @@ public class Shop implements Serializable {
      */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_settlement")
+    //@JsonProperty(value = "Settlement")
+    @JsonIgnore
     private Settlement idSettlement;
 
     /**
