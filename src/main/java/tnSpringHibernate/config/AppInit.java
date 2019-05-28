@@ -39,8 +39,6 @@ public class AppInit implements WebApplicationInitializer {
                 servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         //dispatcher.addMapping("/");
-        // Отдельный маппинг для главной страницы приложения
-        //dispatcher.addMapping("/page");
 
         // Установка параметров контейнера
         servletContext.setInitParameter("defaultHtmlEscape", "true");

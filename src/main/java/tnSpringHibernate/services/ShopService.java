@@ -2,9 +2,11 @@ package tnSpringHibernate.services;
 
 import org.springframework.stereotype.Service;
 import tnSpringHibernate.dao.ShopDaoImpl;
+import tnSpringHibernate.exceptions.EntityNotFoundException;
 import tnSpringHibernate.models.Shop;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +33,15 @@ public class ShopService {
     }
 
     public List<Shop> findAllShops() {
-        return shopDao.findAllShops();
+        List<Shop> shop = shopDao.findAllShops();
+
+        if(shop == null) {
+            throw new EntityNotFoundException();
+        }
+
+        return shop;
+        //return shopDao.findAllShops();
+
     }
 
     @Transactional

@@ -34,6 +34,7 @@ public class ShopDaoImpl implements ShopDao {
     public List<Shop> findAllShops() {
         List<Shop> shops = HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("from Shop").list();
         return shops;
+        //return null;
     }
 
     @Override

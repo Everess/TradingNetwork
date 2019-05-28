@@ -1,9 +1,6 @@
 package tnSpringHibernate.models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -16,6 +13,10 @@ import java.util.Collection;
 @Component
 @Entity
 @Table(name = "shops", schema = "public")
+
+/**
+ * TODO: Custom serializer?
+ */
 
 //@JsonAutoDetect // Marks a class as ready for serialization in JSON.
 /*@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS,
@@ -33,7 +34,8 @@ public class Shop implements Serializable {
     private int idShop;
 
     @Column(name = "name_of_shop")
-    @JsonProperty(value = "Name of shop")
+    @JsonProperty(value = "NameOfShop")
+    @JsonPropertyDescription(value = "Описание")
     private String nameOfShop;
 
     /**
@@ -64,6 +66,7 @@ public class Shop implements Serializable {
 
     }
 
+    @JsonCreator
     public Shop(String nameOfShop, Settlement idSettlement) {
         this.nameOfShop = nameOfShop;
         this.idSettlement = idSettlement;
