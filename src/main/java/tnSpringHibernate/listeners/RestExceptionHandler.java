@@ -1,20 +1,24 @@
-package tnSpringHibernate.exceptions;
+package tnSpringHibernate.listeners;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import tnSpringHibernate.exceptions.EntityNotFoundException;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 
-
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler implements AccessDeniedHandler {
 
     /**
      * The method generates and saves to the file a response for the user by EntityNotFoundException
@@ -42,6 +46,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
          * Return json response in page
          */
         return modelResponse.responseEntity(HttpStatus.OK, "Not success",null, me);
+    }
+
+    @Override
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+
     }
 
     /**

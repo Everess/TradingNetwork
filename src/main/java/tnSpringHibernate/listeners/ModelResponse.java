@@ -1,4 +1,4 @@
-package tnSpringHibernate.exceptions;
+package tnSpringHibernate.listeners;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

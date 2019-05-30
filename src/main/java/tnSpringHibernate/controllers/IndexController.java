@@ -1,25 +1,15 @@
 package tnSpringHibernate.controllers;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tnSpringHibernate.exceptions.EntityNotFoundException;
-import tnSpringHibernate.exceptions.EntityWasFoundException;
-import tnSpringHibernate.exceptions.ModelResponse;
-import tnSpringHibernate.models.Shop;
+import tnSpringHibernate.listeners.ModelResponse;
 import tnSpringHibernate.services.ShopService;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Implement the ability to accept http requests and return json

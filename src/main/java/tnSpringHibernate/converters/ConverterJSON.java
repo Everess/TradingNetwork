@@ -1,4 +1,4 @@
-package tnSpringHibernate.exceptions;
+package tnSpringHibernate.converters;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;

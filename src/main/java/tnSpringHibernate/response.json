@@ -1,9 +1,22 @@
 {
-  "data" : [ {
-    "NameOfShop" : "Лента"
-  }, {
-    "NameOfShop" : "METRO"
-  } ],
-  "message" : "Success",
-  "statusCode" : "OK"
+  "data" : {
+    "Name" : "user",
+    "Authorities" : [ {
+      "authority" : "ROLE_USER"
+    } ],
+    "Credentials" : null,
+    "Principal" : {
+      "password" : null,
+      "username" : "user",
+      "authorities" : [ {
+        "authority" : "ROLE_USER"
+      } ],
+      "accountNonExpired" : true,
+      "accountNonLocked" : true,
+      "credentialsNonExpired" : true,
+      "enabled" : true
+    }
+  },
+  "message" : "Success login",
+  "statusCode" : "ACCEPTED"
 }
