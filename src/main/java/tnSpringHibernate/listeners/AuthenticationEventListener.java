@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 import tnSpringHibernate.models.User;
 
+import javax.jws.WebParam;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -22,6 +24,7 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
 
     @Autowired
     private ModelResponse modelResponse;
+
 
     @Override
     public void onApplicationEvent(AbstractAuthenticationEvent authenticationEvent) {
@@ -53,5 +56,6 @@ public class AuthenticationEventListener implements ApplicationListener<Abstract
             }
         }
     }
+
 
 }

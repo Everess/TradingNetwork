@@ -15,7 +15,7 @@ import java.util.Map;
  * This class describe model of response json
  */
 @Component
-public class ModelResponse {
+public class  ModelResponse {
 
     public ResponseEntity<Object> responseEntity(HttpStatus statusCode, String statusMessage, Object data, Object ex) throws IOException {
         Map<String, Object> map = new HashMap<>();
@@ -40,7 +40,7 @@ public class ModelResponse {
          */
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-        mapper.writeValue(new File("/home/matvey/IdeaProjects/tnSpringHibernate/src/main/java/tnSpringHibernate/response.json"), map);
+        mapper.writeValue(new File("/home/uarchon/Development/response.json"), map);
 
         return new ResponseEntity<>(map, statusCode);
     }

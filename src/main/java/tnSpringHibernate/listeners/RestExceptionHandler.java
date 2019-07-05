@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import tnSpringHibernate.exceptions.EntityNotFoundException;
 
@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 
-@ControllerAdvice
+
+@RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler implements AccessDeniedHandler {
 
     /**
@@ -38,7 +39,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler impleme
          */
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-        mapper.writeValue(new File("/home/matvey/IdeaProjects/tnSpringHibernate/src/main/java/tnSpringHibernate/response.json"), me);
+        mapper.writeValue(new File("/home/uarchon/Development/response.json"), me);
 
         ModelResponse modelResponse = new ModelResponse();
 
