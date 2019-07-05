@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import tnSpringHibernate.listeners.AuthenticationExceptionHandler;
 import tnSpringHibernate.listeners.ModelResponse;
 import tnSpringHibernate.listeners.RestExceptionHandler;
 
@@ -34,6 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ModelResponse modelResponse;
 
+    @Autowired
+    private AuthenticationExceptionHandler authenticationExceptionHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // http.exceptionHandling().accessDeniedHandler((AccessDeniedHandler) new ModelResponse().responseEntity(null, "Success", null, null));
@@ -43,7 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic()
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationExceptionHandler);
        /* http.formLogin()
                 .loginPage("/login")
                 .permitAll()
